@@ -52,19 +52,6 @@ class Solution:
 
     # 4. Move Zeroes
     def moveZeroes(self, nums):
-        numberOfZeroes = nums.count(0)
-        returnList = []
-        for n in nums:
-            if n != 0:
-                returnList.append(n)
-        
-        while numberOfZeroes != 0:
-            returnList.append(0)
-            numberOfZeroes = numberOfZeroes - 1
-
-        return(returnList)
-
-    def moveZeroes1(self, nums):
         index = 0
         for i in range(0,len(nums)):
             if nums[i] != 0:
@@ -80,5 +67,5 @@ solObj = Solution()
 #solObj.singleNumber(221)
 #solObj.isHappy(19)
 #solObj.maxSubArray([8,-19,5,-4,20])
-solObj.moveZeroes1([0,1,0,3,12])
+solObj.moveZeroes([0,1,0,3,12])
 
