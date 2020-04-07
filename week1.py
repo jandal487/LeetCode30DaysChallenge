@@ -63,9 +63,27 @@ class Solution:
         
         return(nums)
 
+    # 5. Best Time to Buy and Sell Stock II
+    def maxProfit(self, prices):
+        if len(prices) > 1:
+            if (prices[1] - prices[0]) > 0:
+                maxProfValue = prices[1] - prices[0]
+            else:
+                maxProfValue = 0
+            for i in range(1,len(prices)-1):
+                profit = prices[i+1] - prices[i]
+                if profit > 0:
+                    maxProfValue = maxProfValue + profit
+
+            return(maxProfValue)
+        else:
+            return 0
+        return 0
+
 solObj = Solution()
 #solObj.singleNumber(221)
 #solObj.isHappy(19)
 #solObj.maxSubArray([8,-19,5,-4,20])
-solObj.moveZeroes([0,1,0,3,12])
+#solObj.moveZeroes([0,1,0,3,12])
+solObj.maxProfit([7,6,4,3,1])
 
