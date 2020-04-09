@@ -1,5 +1,4 @@
 # Week1
-from typing import List
 class Solution:
     # 1. Single Number
     def singleNumber(self, nums):
