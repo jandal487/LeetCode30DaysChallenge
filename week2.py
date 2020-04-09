@@ -50,5 +50,33 @@ singlyLinkedList.insert_at_head(2)
 singlyLinkedList.insert_at_head(3)
 singlyLinkedList.insert_at_head(4)
 singlyLinkedList.insert_at_head(5)
-singlyLinkedList.print_SinglyLinkedList()
-singlyLinkedList.middle_node(singlyLinkedList.head_node)
+#singlyLinkedList.print_SinglyLinkedList()
+#singlyLinkedList.middle_node(singlyLinkedList.head_node)
+
+# 2. Backspace String Compare
+class Solution:
+    def backspaceCompare(self, S, T):
+        s_list = []
+        t_list = []
+
+        for s in list(S):
+            if s != '#':
+                s_list.append(s)
+            else:
+                if len(s_list) > 0:
+                    s_list.pop()
+
+        for t in list(T):
+            if t != '#':
+                t_list.append(t)
+            else:
+                if len(t_list) > 0:
+                    t_list.pop()
+                    
+        return s_list == t_list
+
+solObj = Solution()
+solObj.backspaceCompare("a#c", "b")
+
+
+
