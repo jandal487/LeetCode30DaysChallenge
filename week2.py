@@ -21,13 +21,13 @@ class SinglyLinkedList:
                 p_node = p_node.next
         print(linked_list)
 
-    def insert_at_head(self, data):
-        new_node = Node(data)
+    def insert_at_head(self, stack):
+        new_node = Node(stack)
         new_node.next = self.head_node
         self.head_node = new_node
     
-    def insert_at_tail(self, data):
-        new_node = Node(data)
+    def insert_at_tail(self, stack):
+        new_node = Node(stack)
         if self.head_node is None:
             self.start_node = new_node
             return
@@ -75,8 +75,66 @@ class Solution:
                     
         return s_list == t_list
 
-solObj = Solution()
-solObj.backspaceCompare("a#c", "b")
+#solObj = Solution()
+#solObj.backspaceCompare("a#c", "b")
 
+# 3. Min Stack
+class MinStack:
+
+    def __init__(self):
+        """
+        initialize your stack structure here.
+        """
+        self.stack = []
+        self.minValue = None
+        
+
+    def push(self, x):
+        if self.isEmpty():
+            self.minValue = x
+            self.stack.append(x)
+        else:
+            if x < self.minValue:
+                self.minValue = x
+            self.stack.append(x)
+
+    def pop(self):
+        if self.isEmpty():
+            print("Stack is empty!")
+        else:
+            self.stack.pop()
+            minNumber = self.top()
+            for d in self.stack:
+                if d < minNumber:
+                    minNumber = d
+            self.minValue = minNumber
+
+    def top(self):
+        if not self.isEmpty():
+            return self.stack[-1]
+
+    def getMin(self):
+        if not self.isEmpty():
+            return self.minValue
+
+    def isEmpty(self):
+        return len(self.stack) < 1
+
+    def printStack(self):
+        print("---")
+        for d in range(len(self.stack)-1, -1, -1):
+            print("| ", self.stack[d] ,"  \n")
+        print("---")
+
+minStack = MinStack()
+minStack.push(9)
+minStack.push(27)
+minStack.push(46)
+minStack.push(3)
+minStack.printStack()
+
+minStack.pop()
+minStack.printStack()
+minStack.getMin()
 
 
