@@ -86,39 +86,42 @@ class MinStack:
         initialize your stack structure here.
         """
         self.stack = []
-        self.minValue = None
+        self.minValueStack = []
         
 
     def push(self, x):
-        if self.isEmpty():
-            self.minValue = x
-            self.stack.append(x)
-        else:
-            if x < self.minValue:
-                self.minValue = x
-            self.stack.append(x)
+        if x != []:
+            if self.isStackEmpty():
+                self.stack.append(x)
+                self.minValueStack.append(x)
+            else:
+                self.stack.append(x)
+                if x <= self.getMin():
+                    self.minValueStack.append(x)
 
     def pop(self):
-        if self.isEmpty():
+        if self.isStackEmpty():
             print("Stack is empty!")
         else:
-            self.stack.pop()
-            minNumber = self.top()
-            for d in self.stack:
-                if d < minNumber:
-                    minNumber = d
-            self.minValue = minNumber
+            removed = self.stack.pop()
+            if removed == self.getMin():
+                self.minValueStack.pop()
 
     def top(self):
-        if not self.isEmpty():
+        if not self.isStackEmpty():
             return self.stack[-1]
 
     def getMin(self):
-        if not self.isEmpty():
-            return self.minValue
+        if not self.isMinStackEmpty():
+            return self.minValueStack[-1]
+        else:
+            return None
 
-    def isEmpty(self):
+    def isStackEmpty(self):
         return len(self.stack) < 1
+
+    def isMinStackEmpty(self):
+        return len(self.minValueStack) < 1
 
     def printStack(self):
         print("---")
@@ -126,15 +129,32 @@ class MinStack:
             print("| ", self.stack[d] ,"  \n")
         print("---")
 
+    def printMinStack(self):
+        print("---")
+        for d in range(len(self.minValueStack)-1, -1, -1):
+            print("| ", self.minValueStack[d] ,"  \n")
+        print("---")
+
 minStack = MinStack()
-minStack.push(9)
-minStack.push(27)
-minStack.push(46)
+minStack.push(2)
+minStack.push(0)
 minStack.push(3)
+minStack.push(0)
 minStack.printStack()
+minStack.printMinStack()
 
 minStack.pop()
 minStack.printStack()
-minStack.getMin()
+minStack.printMinStack()
+
+minStack.pop()
+minStack.printStack()
+minStack.printMinStack()
+
+minStack.pop()
+minStack.printStack()
+minStack.printMinStack()
+
+
 
 
