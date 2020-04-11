@@ -155,6 +155,47 @@ minStack.pop()
 minStack.printStack()
 minStack.printMinStack()
 
+# 4. Diameter of Binary Tree
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+class SolutionBinaryTree:
+    def diameterOfBinaryTree(self, root):
+        if root == None: return 0
+
+        leftHeight = self.heightOfBinaryTree(root.left)
+        rightHeight = self.heightOfBinaryTree(root.right)
+
+        leftDiameter = self.diameterOfBinaryTree(root.left)
+        rightDiameter = self.diameterOfBinaryTree(root.right)
+
+        heightWithRoot = leftHeight + rightHeight
+        heightWithoutRoot = max(leftDiameter, rightDiameter)
+
+        return max(heightWithRoot, heightWithoutRoot)
+
+    def heightOfBinaryTree(self, root):
+        if root == None: return 0
+        
+        leftHeight = self.heightOfBinaryTree(root.left)
+        rightHeight = self.heightOfBinaryTree(root.right)
+        
+        return 1 + max(leftHeight, rightHeight)
 
 
+# Build a Binary Tree
+rootNode = TreeNode(1)
+n2 = TreeNode(2)
+n3 = TreeNode(3)
+n4 = TreeNode(4)
+n5 = TreeNode(5)
+rootNode.left = n2
+rootNode.right = n3
+n2.left = n4
+n2.right = n5
 
+solObj = SolutionBinaryTree()
+solObj.diameterOfBinaryTree(rootNode)
