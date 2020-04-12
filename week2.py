@@ -199,3 +199,53 @@ n2.right = n5
 
 solObj = SolutionBinaryTree()
 solObj.diameterOfBinaryTree(rootNode)
+
+
+# 5. Last Stone Weight
+class SolutionLSWeight:
+    def lastStoneWeight0(self, stones):
+        # Solution 1: Using sorted array
+        if len(stones) < 1: 
+            return 0
+        if len(stones) == 1: 
+            return stones[0]
+        else:
+            while(len(stones) > 1):
+                stones.sort()
+                x = stones[-2] # second heavy
+                y = stones[-1] # heaviest stones
+
+                if (x == y):
+                    # Drop last 2 stones
+                    stones = stones[:-2]
+                else:
+                    stones[-2] = y - x
+                    # Drop the last stone
+                    stones = stones[:-1] 
+
+        if len(stones) == 1:
+            return stones[0]
+        else:
+            return 0
+
+    def lastStoneWeight(self, stones):
+        # Solution 2: Using Min Heap
+        import heapq
+        stones = [-1*i for i in stones]
+        heapq.heapify(stones)
+
+        while(len(stones) > 1):
+            y = -1*(heapq.heappop(stones))
+            x = -1*(heapq.heappop(stones))
+
+            if x != y:
+
+                heapq.heappush(stones, -1*(y - x))
+
+        if len(stones) == 1:
+            return -1*(stones[0])
+        else:
+            return 0
+
+solObj = SolutionLSWeight()
+solObj.lastStoneWeight([2,7,4,1,8,1])
