@@ -269,4 +269,4 @@ class SolutionContigArray:
         return maxLength
 
 solObj = SolutionContigArray()
-solObj.findMaxLength([0,1,0])
+solObj.findMaxLength([0,0,1,0,0,0,1,1])
