@@ -249,3 +249,24 @@ class SolutionLSWeight:
 
 solObj = SolutionLSWeight()
 solObj.lastStoneWeight([2,7,4,1,8,1])
+
+# Step 6. Contiguous Array
+class SolutionContigArray:
+    def findMaxLength(self, nums):
+        countDict = {}
+        count = 0
+        maxLength = 0
+        for i in range(len(nums)):
+            if nums[i] == 1: count += 1
+            if nums[i] == 0: count += -1
+            if count == 0: maxLength = i + 1
+
+            if count not in countDict:
+                countDict[count] = i
+            else:
+                maxLength = max(maxLength, i-countDict[count])
+                
+        return maxLength
+
+solObj = SolutionContigArray()
+solObj.findMaxLength([0,1,0])
