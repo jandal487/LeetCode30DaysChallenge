@@ -273,6 +273,36 @@ class SolutionContigArray:
 
 # 7. Perform String Shifts
 class SolutionStringShift:
+    # solution 1:
+    def stringShift(self, s, shift):
+        shift_total = 0
+        for direction, shift_value in shift:
+            if direction == 0:
+                # Left shift
+                shift_total = shift_total - shift_value
+            else:
+                # Right shift
+                shift_total = shift_total + shift_value
+        if shift_total < 0:
+            # Left shift
+            # abcdef 2
+            # cdef ab
+            newFront = s[shift_total:]
+            newBack  = s[:shift_total]
+
+            return newFront + newBack
+        elif shift_total > 0:
+            # Right shift
+            # abcdef 2
+            # ef abcd
+            newFront = s[(len(s) - shift_total):]
+            newBack  = s[:(len(s) - shift_total)]
+
+            return newFront + newBack
+        
+        return s
+    
+    # Solution 2
     def stringShift(self, s, shift):
         shift_left = 0
         for direction, shift_value in shift:
