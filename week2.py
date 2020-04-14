@@ -44,12 +44,12 @@ class SinglyLinkedList:
             jNode = jNode.next.next
         return iNode.val
 
-singlyLinkedList = SinglyLinkedList()
-singlyLinkedList.insert_at_head(1)
-singlyLinkedList.insert_at_head(2)
-singlyLinkedList.insert_at_head(3)
-singlyLinkedList.insert_at_head(4)
-singlyLinkedList.insert_at_head(5)
+#singlyLinkedList = SinglyLinkedList()
+#singlyLinkedList.insert_at_head(1)
+#singlyLinkedList.insert_at_head(2)
+#singlyLinkedList.insert_at_head(3)
+#singlyLinkedList.insert_at_head(4)
+#singlyLinkedList.insert_at_head(5)
 #singlyLinkedList.print_SinglyLinkedList()
 #singlyLinkedList.middle_node(singlyLinkedList.head_node)
 
@@ -135,25 +135,25 @@ class MinStack:
             print("| ", self.minValueStack[d] ,"  \n")
         print("---")
 
-minStack = MinStack()
-minStack.push(2)
-minStack.push(0)
-minStack.push(3)
-minStack.push(0)
-minStack.printStack()
-minStack.printMinStack()
+#minStack = MinStack()
+#minStack.push(2)
+#minStack.push(0)
+#minStack.push(3)
+#minStack.push(0)
+#minStack.printStack()
+#minStack.printMinStack()
 
-minStack.pop()
-minStack.printStack()
-minStack.printMinStack()
+#minStack.pop()
+#minStack.printStack()
+#minStack.printMinStack()
 
-minStack.pop()
-minStack.printStack()
-minStack.printMinStack()
+#minStack.pop()
+#minStack.printStack()
+#minStack.printMinStack()
 
-minStack.pop()
-minStack.printStack()
-minStack.printMinStack()
+#minStack.pop()
+#minStack.printStack()
+#minStack.printMinStack()
 
 # 4. Diameter of Binary Tree
 class TreeNode:
@@ -187,18 +187,18 @@ class SolutionBinaryTree:
 
 
 # Build a Binary Tree
-rootNode = TreeNode(1)
-n2 = TreeNode(2)
-n3 = TreeNode(3)
-n4 = TreeNode(4)
-n5 = TreeNode(5)
-rootNode.left = n2
-rootNode.right = n3
-n2.left = n4
-n2.right = n5
+#rootNode = TreeNode(1)
+#n2 = TreeNode(2)
+#n3 = TreeNode(3)
+#n4 = TreeNode(4)
+#n5 = TreeNode(5)
+#rootNode.left = n2
+#rootNode.right = n3
+#n2.left = n4
+#n2.right = n5
 
-solObj = SolutionBinaryTree()
-solObj.diameterOfBinaryTree(rootNode)
+#solObj = SolutionBinaryTree()
+#solObj.diameterOfBinaryTree(rootNode)
 
 
 # 5. Last Stone Weight
@@ -247,8 +247,8 @@ class SolutionLSWeight:
         else:
             return 0
 
-solObj = SolutionLSWeight()
-solObj.lastStoneWeight([2,7,4,1,8,1])
+#solObj = SolutionLSWeight()
+#solObj.lastStoneWeight([2,7,4,1,8,1])
 
 # Step 6. Contiguous Array
 class SolutionContigArray:
