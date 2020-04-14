@@ -250,7 +250,7 @@ class SolutionLSWeight:
 #solObj = SolutionLSWeight()
 #solObj.lastStoneWeight([2,7,4,1,8,1])
 
-# Step 6. Contiguous Array
+# 6. Contiguous Array
 class SolutionContigArray:
     def findMaxLength(self, nums):
         countDict = {}
@@ -268,5 +268,24 @@ class SolutionContigArray:
                 
         return maxLength
 
-solObj = SolutionContigArray()
-solObj.findMaxLength([0,0,1,0,0,0,1,1])
+#solObj = SolutionContigArray()
+#solObj.findMaxLength([0,0,1,0,0,0,1,1])
+
+# 7. Perform String Shifts
+class SolutionStringShift:
+    def stringShift(self, s, shift):
+        shift_left = 0
+        for direction, shift_value in shift:
+            if direction == 0:
+                # Left shift
+                shift_left = shift_left + shift_value
+            else:
+                # Right shift
+                shift_left = shift_left - shift_value
+
+        shift_left = shift_left % len(s)
+
+        return s[shift_left:] + s[:shift_left]
+
+solObj = SolutionStringShift()
+print(solObj.stringShift("abcdefg", [[1,1],[1,1],[0,2],[1,3]]))
