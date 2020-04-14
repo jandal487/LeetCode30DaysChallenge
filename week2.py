@@ -285,16 +285,16 @@ class SolutionStringShift:
                 shift_total = shift_total + shift_value
         if shift_total < 0:
             # Left shift
-            # abcdef 2
-            # cdef ab
+            shift_total = abs(shift_total) % len()
+            # abcdef 2 ==> cdef ab
             newFront = s[shift_total:]
             newBack  = s[:shift_total]
 
             return newFront + newBack
         elif shift_total > 0:
             # Right shift
-            # abcdef 2
-            # ef abcd
+            shift_total = shift_total % len()
+            # abcdef 2 ==> ef abcd
             newFront = s[(len(s) - shift_total):]
             newBack  = s[:(len(s) - shift_total)]
 
