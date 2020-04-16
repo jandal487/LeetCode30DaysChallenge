@@ -17,3 +17,51 @@ class Solution:
 solObj = Solution()
 solObj.productExceptSelf([1,2,3,4])
 
+# 2. Valid Parenthesis String
+class SolutionCheckParanthesis:
+    # Solution 1: With 2 stacks
+    def checkValidString(self, s):
+        if len(s) == 0 or s == '*': return True
+        if len(s) == 1 and s != '*': return False
+
+        stack1 = []   # stores ( or )
+        stack2 = []   # stores *
+
+        for p, c in enumerate(s):
+            if c == '*': stack2.append(p)
+            elif c == '(': stack1.append(p)
+            elif c == ')': 
+                if len(stack1) > 0: stack1.pop()
+                elif len(stack2) > 0: stack2.pop()
+                else: return False
+
+        while stack1 and stack2:
+            if stack1[-1] < stack2[-1]:
+                stack1.pop()
+                stack2.pop()
+            else: break
+        
+        return len(stack1) == 0
+    
+    # Solution 2: Without 2 stacks
+    def checkValidString2(self, s):
+        if len(s) == 0 or s == '*': return True
+        if len(s) == 1 and s != '*': return False
+
+        sArr = list(s)
+        countLeftP  = 0
+        for p in range(len(sArr)):
+            if sArr[p] == ')': countLeftP -= 1
+            else: countLeftP += 1        
+            if countLeftP < 0: return False
+        
+        countRightP = 0
+        for p in range(len(sArr)-1,-1,-1):
+            if sArr[p] == '(': countRightP -= 1
+            else: countRightP += 1        
+            if countRightP < 0: return False
+
+        return True
+
+solObj = SolutionCheckParanthesis()
+print(solObj.checkValidString("((*"))
