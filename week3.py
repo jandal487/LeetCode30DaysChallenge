@@ -14,8 +14,8 @@ class Solution:
         output_list = list(map(lambda x,y: x*y, prod_left, prod_right))
         return(output_list) 
 
-solObj = Solution()
-solObj.productExceptSelf([1,2,3,4])
+#solObj = Solution()
+#solObj.productExceptSelf([1,2,3,4])
 
 # 2. Valid Parenthesis String
 class SolutionCheckParanthesis:
@@ -63,5 +63,32 @@ class SolutionCheckParanthesis:
 
         return True
 
-solObj = SolutionCheckParanthesis()
-print(solObj.checkValidString("((*"))
+#solObj = SolutionCheckParanthesis()
+#print(solObj.checkValidString("((*"))
+
+# 3. Number of Islands
+class SolutionCountIslands:
+    def numIslands(self, grid):
+        islandCount = 0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == '1': 
+                    islandCount += 1
+                    self.visitConnectingOnes(grid, i, j)
+        return islandCount
+
+    def visitConnectingOnes(self, grid, i, j):
+        if(i<0 or i>=len(grid) or j<0 or j>=len(grid[0]) or grid[i][j]=='0'): 
+            return
+        grid[i][j] = '0'
+        self.visitConnectingOnes(grid, i+1, j) # up
+        self.visitConnectingOnes(grid, i-1, j) # down
+        self.visitConnectingOnes(grid, i, j+1) # right
+        self.visitConnectingOnes(grid, i, j-1) # left
+
+solObj = SolutionCountIslands()
+grid = [['1','1','0','0','0'], \
+        ['1','1','0','0','0'], \
+        ['0','0','1','0','0'], \
+        ['0','0','0','1','1']]
+print(solObj.numIslands(grid))
