@@ -86,12 +86,12 @@ class SolutionCountIslands:
         self.visitConnectingOnes(grid, i, j+1) # right
         self.visitConnectingOnes(grid, i, j-1) # left
 
-solObj = SolutionCountIslands()
-grid = [['1','1','0','0','0'], \
-        ['1','1','0','0','0'], \
-        ['0','0','1','0','0'], \
-        ['0','0','0','1','1']]
-print(solObj.numIslands(grid))
+#solObj = SolutionCountIslands()
+#grid = [['1','1','0','0','0'], \
+#        ['1','1','0','0','0'], \
+#        ['0','0','1','0','0'], \
+#        ['0','0','0','1','1']]
+#print(solObj.numIslands(grid))
 
 # 4. Min Path Sum
 class SolutionMinPathSum:
@@ -111,10 +111,40 @@ class SolutionMinPathSum:
                     dp[i][j] = min(dp[i][j - 1], dp[i - 1][j]) + grid[i][j]
         return dp[m - 1][n - 1]
 
-solObj = SolutionMinPathSum()
-grid = [
-  [1,3,1],
-  [1,5,1],
-  [4,2,1]
-]
-solObj.minPathSum(grid)
+#solObj = SolutionMinPathSum()
+#grid = [
+#  [1,3,1],
+#  [1,5,1],
+#  [4,2,1]
+#]
+#solObj.minPathSum(grid)
+
+# 4. Search in Rotated Sorted Array
+class SolutionBST:
+    def search(self, nums, target):
+        if nums == None or len(nums) == 0: return -1
+        #if len(nums) == 1: return 0 if nums[0] == target else -1
+
+        leftIndex = 0
+        rightIndex = len(nums)
+
+        while leftIndex < rightIndex:
+            midIndex = leftIndex + (rightIndex-leftIndex)//2
+            midElemt = nums[midIndex]
+
+            if midElemt == target: return midIndex
+            if nums[leftIndex] <= midElemt:
+                if target < midElemt and target >= nums[leftIndex]: 
+                    rightIndex = midIndex
+                else:
+                    leftIndex = midIndex+1
+            else:
+                if target > midElemt and target <= nums[rightIndex-1]:
+                    leftIndex = midIndex+1
+                else:
+                    rightIndex = midIndex
+        return -1
+
+solObj = SolutionBST()
+print(solObj.search([1,3,5], 5))
+
