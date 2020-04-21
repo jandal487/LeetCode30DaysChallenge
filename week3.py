@@ -145,6 +145,81 @@ class SolutionBST:
                     rightIndex = midIndex
         return -1
 
-solObj = SolutionBST()
-print(solObj.search([1,3,5], 5))
+#solObj = SolutionBST()
+#print(solObj.search([1,3,5], 5))
+
+
+# 5. Construct Binary Search Tree from Preorder Traversal
+class TreeNode:
+    def __init__(self, val): 
+        self.val = val  
+        self.left = None
+        self.right = None
+
+
+class SolutionBST:
+    def bstFromPreorder(self, preorder):
+        if preorder is None or len(preorder) == 0: return None
+        inorder = sorted(preorder)
+
+        return self.createBST(preorder, inorder)
+
+    def createBST(self, preorder, inorder):
+        lengthpr = len(preorder)
+        lengthin = len(inorder)
+        if lengthpr != lengthin or preorder is None \
+            or inorder is None or lengthpr == 0 or lengthin == 0: return None
+
+
+        rootNode  = TreeNode(preorder[0])
+        rootIndex = inorder.index(rootNode.val)
+
+        rootNode.left  = self.createBST(preorder[1:rootIndex+1], inorder[:rootIndex])
+
+        rootNode.right = self.createBST(preorder[rootIndex+1:], inorder[rootIndex+1:])
+
+        return rootNode
+
+#solObj = SolutionBST()
+#solObj.bstFromPreorder([8,5,1,7,10,12])
+
+
+# 6. Leftmost Column with at Least a One
+class SolutionLMC:
+    def leftMostColumnWithOne(self, binaryMatrix): 
+        rows, cols = binaryMatrix.dimensions()
+
+        current_row = 0
+        current_col = cols - 1
+        while(current_row<rows and current_col>=0):
+            if binaryMatrix.get(current_row, current_col) == 0:
+                current_row += 1
+            else:
+                current_col -= 1
+
+        if current_col != cols-1:
+            return current_col+1
+        else:
+            return -1
+
+# Execution is on leetcode.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
