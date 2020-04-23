@@ -119,7 +119,7 @@ class SolutionMinPathSum:
 #]
 #solObj.minPathSum(grid)
 
-# 4. Search in Rotated Sorted Array
+# 5. Search in Rotated Sorted Array
 class SolutionBST:
     def search(self, nums, target):
         if nums == None or len(nums) == 0: return -1
@@ -149,7 +149,7 @@ class SolutionBST:
 #print(solObj.search([1,3,5], 5))
 
 
-# 5. Construct Binary Search Tree from Preorder Traversal
+# 6. Construct Binary Search Tree from Preorder Traversal
 class TreeNode:
     def __init__(self, val): 
         self.val = val  
@@ -184,7 +184,7 @@ class SolutionBST:
 #solObj.bstFromPreorder([8,5,1,7,10,12])
 
 
-# 6. Leftmost Column with at Least a One
+# 7. Leftmost Column with at Least a One
 class SolutionLMC:
     def leftMostColumnWithOne(self, binaryMatrix): 
         rows, cols = binaryMatrix.dimensions()
