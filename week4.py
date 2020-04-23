@@ -23,5 +23,19 @@ class Solution:
 
         return result
 
-solObj = Solution()
-solObj.subarraySum([1,1,1], 2)
+#solObj = Solution()
+#solObj.subarraySum([1,1,1], 2)
+
+# 2. Bitwise AND of Numbers Range
+class SolutionBitwiseAND:
+    def rangeBitwiseAnd(self, m, n):
+        count = 0
+        while(m != n):
+            m = m >> 1
+            n = n >> 1
+            count += 1
+        
+        return(m << count)
+
+solObj = SolutionBitwiseAND()
+solObj.rangeBitwiseAnd(9, 12)
