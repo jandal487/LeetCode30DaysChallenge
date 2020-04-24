@@ -39,3 +39,93 @@ class SolutionBitwiseAND:
 
 solObj = SolutionBitwiseAND()
 solObj.rangeBitwiseAnd(9, 12)
+
+# 3. LRU Cache
+# Solution 1: Using Doubly Linked List
+class Node:
+    def __init__(self, key, value):
+        self.key = key
+        self.val =  value
+        self.prev = None
+        self.next = None
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def headInsertion(self, node):
+        if (self.head is None):
+            # First element in DLL
+            self.head = node
+            self.tail = node
+        else:
+            # If DLL is not empty
+            node.prev = self.tail
+            self.tail.next = node
+            self.tail = node
+        
+    def delete(self, node):
+        if node.prev:
+            node.prev.next = node.next
+        else:
+            self.head = node.next
+        if node.next:
+            node.next.prev = node.prev
+        else:
+            self.tail = node.prev
+
+    
+class LRUCache0:
+    def __init__(self, capacity):
+        self.list = DoublyLinkedList()
+        self.dict = {}
+        self.capacity = capacity
+        
+    def put(self, key, val):
+        node = Node(key, val)
+        self.list.headInsertion(node)
+        self.dict[key] = node
+
+    def get(self, key):
+        if key in self.dict:
+            val = self.dict[key].val
+            self.list.delete(self.dict[key])
+            self.put(key, val)
+            return val
+        return -1
+
+    def set(self, key, val):
+        if key in self.dict:
+            self.list.delete(self.dict[key])
+        elif len(self.dict) == self.capacity:
+            del self.dict[self.list.head.key]
+            self.list.delete(self.list.head)
+        self.put(key, val)
+
+# Solution 2: Using OrderedDict
+class LRUCache:
+    import collections
+    def __init__(self, capacity):
+        self.cache = collections.OrderedDict()
+        self.capacity = capacity
+
+    def get(self, key):
+        if key not in self.cache:
+            return -1
+
+        val = self.cache[key]
+
+        del self.cache[key]
+
+        self.cache[key] = val
+
+        return val
+
+    def put(self, key, value):
+        if key in self.cache:
+            del self.cache[key]
+        elif len(self.cache) == self.capacity:
+            self.cache.popitem(last=False)
+            
+        self.cache[key] = value
