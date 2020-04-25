@@ -129,3 +129,21 @@ class LRUCache:
             self.cache.popitem(last=False)
             
         self.cache[key] = value
+
+# Execution on leetcode.com
+
+# 4. Jump Game
+class SolutionJump:
+    def canJump(self, nums):
+        jump = nums[0]
+
+        for i in range(1, len(nums)):
+            if jump == 0:
+                return False
+
+            jump = max(jump - 1, nums[i])
+            
+        return True
+
+solObj = SolutionJump()
+solObj.canJump([2,3,1,0,4])    
