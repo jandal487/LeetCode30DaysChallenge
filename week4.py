@@ -145,5 +145,26 @@ class SolutionJump:
             
         return True
 
-solObj = SolutionJump()
-solObj.canJump([2,3,1,0,4])    
+#solObj = SolutionJump()
+#solObj.canJump([2,3,1,0,4])    
+
+# 5. Longest Common Subsequence
+class SolutionLCS:
+    def longestCommonSubsequence(self, text1, text2):
+        m, n = len(text1), len(text2) 
+    
+        # Make 2D grid from 2 strings
+        g2D = [[0]*(n+1) for i in range(m+1)] 
+    
+        for i in range(m): 
+            for j in range(n): 
+                if text1[i] == text2[j]: 
+                    g2D[i+1][j+1] = g2D[i][j]+1
+                else: 
+                    g2D[i+1][j+1] = \
+                        max(g2D[i][j+1], g2D[i+1][j]) 
+    
+        return g2D[-1][-1] 
+
+solObj = SolutionLCS()
+solObj.longestCommonSubsequence("abcdef", "ace")
