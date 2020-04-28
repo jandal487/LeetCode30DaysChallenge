@@ -166,5 +166,46 @@ class SolutionLCS:
     
         return g2D[-1][-1] 
 
-solObj = SolutionLCS()
-solObj.longestCommonSubsequence("abcdef", "ace")
+# = SolutionLCS()
+#olObj.longestCommonSubsequence("abcdef", "ace")
+
+# 6. Maximal Square
+class SolutionMS:
+    def maximalSquare(self, matrix: List[List[str]]) -> int:
+        if not matrix:
+            return 0
+        
+        m, n, ans = len(matrix), len(matrix[0]), 0
+        if m == 0 or n == 0:
+            return 0
+        
+        dp = [[0 for i in range(n)] for j in range(m)]
+        
+        for i in range(0, m):
+            for j in range(0, n):
+                if matrix[i][j] == '1':
+                    dp[i][j] = min(dp[i-1][j-1], dp[i][j-1], dp[i-1][j]) + 1
+                    ans = max(ans, dp[i][j])
+        
+        return ans * ans
+
+# Execution on leetcode.com
+
+# 7. First Unique Number
+class FirstUnique:
+    def __init__(self, nums):
+        self.nums = nums
+
+    def showFirstUnique(self):
+        return 0
+        
+
+    def add(self, value):
+        return None
+
+# Your FirstUnique object will be instantiated and called as such:
+nums = [2, 3, 5]
+obj = FirstUnique(nums)
+param_1 = obj.showFirstUnique()
+obj.add(4)
+
