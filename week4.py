@@ -171,7 +171,7 @@ class SolutionLCS:
 
 # 6. Maximal Square
 class SolutionMS:
-    def maximalSquare(self, matrix: List[List[str]]) -> int:
+    def maximalSquare(self, matrix):
         if not matrix:
             return 0
         
@@ -194,18 +194,38 @@ class SolutionMS:
 # 7. First Unique Number
 class FirstUnique:
     def __init__(self, nums):
-        self.nums = nums
+        self.q = []
+        self.dict = {}
+        for n in nums:
+            self.add(n)
 
     def showFirstUnique(self):
-        return 0
-        
+        while (len(self.q) > 0 \
+            and self.dict[self.q[0]] > 1):
+            self.q.pop(0)
+
+        if len(self.q) == 0:
+            return -1
+        else:
+            return self.q[0]
 
     def add(self, value):
-        return None
+        if value in self.dict:
+            self.dict[value] += 1
+        else:
+            self.dict[value] = 1
+            self.q.append(value)
+
+    def printQ(self):
+        print(self.q)
+
 
 # Your FirstUnique object will be instantiated and called as such:
 nums = [2, 3, 5]
 obj = FirstUnique(nums)
-param_1 = obj.showFirstUnique()
-obj.add(4)
+obj.printQ()
+
+print(obj.showFirstUnique())
+obj.add(3)
+obj.printQ()
 
